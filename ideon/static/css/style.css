@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+main {
+    flex: 1;
+}
+
+.side-right,
+.side-left,
+main {
+    margin: 30px;
+}
+

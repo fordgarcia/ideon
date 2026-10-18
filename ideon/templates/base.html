@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="fordgarcia">
+        <meta name="description" content="Note taking and tracker">
+        {% block css %}{% endblock %}
+        {% block js %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="{% static 'js/default.js' %}" defer></script>
+        <title>Ideon</title>
+    </head>
+    <body>
+        <!-- {% include 'side-left.html' %} -->
+        <section class="side-left">
+            <h1>Ideon</h1>
+            <ul>
+                <li><a href="#" onclick="hideDiv('current_content')">home</a></li>
+                <li><a href="{% url 'test' %}">test</a></li>
+                {% block sidebar_left %}{% endblock %}
+            </ul>
+        </section>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        {% include "side-right.html" %}
+    </body>
+</html>

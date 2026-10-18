@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block js %}
+    <script src="{% static 'test/js/test.js' %}" defer></script>
+{% endblock %}
+{% block sidebar_left %}
+    {% for lesson in lessons %}
+        <li>
+            <a href="#">{{ lesson.name }}</a>
+            {% for topic in lesson.topics.all %}
+                <details onclick="getDetails({{ topic.id }})">
+                    <summary>{{ topic.name }}</summary>
+                    {{ topic.description }}
+                </details>
+            {% endfor %}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block content %}
+    <div class="hero" id="current_content" hidden>
+        <h1 id="header">bitch</h1>
+        <p id="content">nigga</p>
+    </div>
+{% endblock %}

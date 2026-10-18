@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}{% endblock %}
+{% block sidebar_left %}
+    {% for lesson in lessons %}
+        <li>
+            <a href="#">{{ lesson.name }}</a>
+            {% for topic in lesson.topics.all %}
+                <details>
+                    <summary>{{ topic.name }}</summary>
+                    {{ topic.description }}
+                </details>
+            {% endfor %}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block content %}{% endblock %}
