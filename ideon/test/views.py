@@ -2,6 +2,7 @@ from django.shortcuts import render
 from session.models import Lesson
 lazy from django.http import JsonResponse
 lazy from session.models import Topic, Lesson
+from .forms import NoteForm
 
 # Create your views here.
 
@@ -50,6 +51,7 @@ def test(request):
     placeholder = Lesson.objects.all()
 
     context = {
-        'lessons':placeholder
+        'lessons':placeholder,
+        'form':NoteForm
     }
     return render(request, 'test/test.html', context)

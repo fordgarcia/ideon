@@ -35,6 +35,9 @@
 
 // loadTopics();
 
+
+const headerInput = document.querySelector('#id_header');
+
 const topicsContainer = document.querySelector("#container");
 
 let hasTopic = false;

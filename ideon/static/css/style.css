@@ -37,8 +37,9 @@ ul {
 
 main {
     flex: 1;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 20%;
+    min-height: 100dvh;
+    padding-top: 30px;
 }
 
 .side-left #title {
@@ -48,12 +49,13 @@ main {
 }
 
 .side-right,
-.side-left,
-main {
+.side-left {
     padding: 30px;
     width: 20%;
     height: 100dvh;
 }
+
+
 
 .side-right,
 .side-left {
@@ -84,6 +86,10 @@ main {
 
 /* content */
 
+#container {
+    padding: 30px;
+}
+
 #container #lesson_name {
     font-size: 6em;
 }
@@ -104,6 +110,49 @@ main {
 .summary {
     padding-left: 40px;
 }
+
+form label {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form #id_topic,
+form #id_header,
+form #id_content {
+    border: 2px solid var(--text);
+    padding: 10px;
+    border-radius: 0;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1em;
+    width: 600px;
+    outline:none;
+    box-shadow: 10px 10px 0 var(--text);
+}
+
+form option {
+    font-weight: bold;
+}
+
+form #id_topic {
+    background-color: var(--buttons);
+}
+
+form #id_header {
+    background-color: var(--background);
+}
+
+form #id_content {
+    background-color: var(--background);
+    resize: none;
+}
+
+
 
 
 
