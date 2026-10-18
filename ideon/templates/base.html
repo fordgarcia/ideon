@@ -15,9 +15,9 @@
     <body>
         <!-- {% include 'side-left.html' %} -->
         <section class="side-left">
-            <h1>Ideon</h1>
+            <h1 id="title">Ideon</h1>
             <ul>
-                <li><a href="#" onclick="hideDiv('current_content')">home</a></li>
+                <li><a href="{% url 'home' %}">home</a></li>
                 <li><a href="{% url 'test' %}">test</a></li>
                 {% block sidebar_left %}{% endblock %}
             </ul>

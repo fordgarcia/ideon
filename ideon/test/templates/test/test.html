@@ -2,23 +2,28 @@
 {% load static %}
 {% block js %}
     <script src="{% static 'test/js/test.js' %}" defer></script>
+    <script src="{% static 'test/js/topic.js' %}" defer></script>
 {% endblock %}
 {% block sidebar_left %}
     {% for lesson in lessons %}
         <li>
-            <a href="#">{{ lesson.name }}</a>
+            <a href="#" onclick="getLesson({{ lesson.id }})">{{ lesson.name }}</a>
             {% for topic in lesson.topics.all %}
-                <details onclick="getDetails({{ topic.id }})">
-                    <summary>{{ topic.name }}</summary>
-                    {{ topic.description }}
+                <details onclick="getTopic({{ topic.id }})">
+                    <summary class="main_summary">{{ topic.name }}</summary>
+                    <!-- {{ topic.description }} -->
+                    {% for top in topic.notes.all %}
+                        <details>
+                            <summary class="summary">{{ top.header }}</summary>
+                        </details>
+                    {% endfor %}
                 </details>
             {% endfor %}
         </li>
     {% endfor %}
 {% endblock %}
 {% block content %}
-    <div class="hero" id="current_content" hidden>
-        <h1 id="header">bitch</h1>
-        <p id="content">nigga</p>
+    <div id="container">
+        
     </div>
 {% endblock %}

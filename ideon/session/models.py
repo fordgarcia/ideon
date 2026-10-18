@@ -4,6 +4,7 @@ from django.db import models
 
 class Lesson(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
