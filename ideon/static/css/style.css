@@ -111,6 +111,9 @@ main {
     padding-left: 40px;
 }
 
+
+/* split this part and the js part to another file */
+
 form label {
     display: none;
 }
@@ -150,6 +153,18 @@ form #id_header {
 form #id_content {
     background-color: var(--background);
     resize: none;
+}
+
+form #id_submit,
+form #id_reset {
+    width: 100px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid var(--text);
+    box-shadow: 2px 2px 0 var(--text);
+    background-color: var(--background);
+    color: var(--text);
+    font-weight: bold;
 }
 
 
