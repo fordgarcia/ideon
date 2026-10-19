@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from session.models import Lesson
 lazy from django.http import JsonResponse
-lazy from session.models import Topic, Lesson
+lazy from session.models import Topic, Lesson, Note
 from .forms import NoteForm
 
 # Create your views here.
@@ -49,6 +49,27 @@ def lesson_api(request, lesson_id):
 
 def test(request):
     placeholder = Lesson.objects.all()
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+
+        # update
+        # instance = Note.objects.filter(header=request.POST.get('header')).first()
+        # # instance = Note.objects.get(header=request.POST.get('header'))
+
+        # form = NoteForm(request.POST, instance=instance)
+
+        # if form.is_valid():
+        #     form.save()
+        #     return redirect('test')
+
+        instance = Note.objects.filter(header=request.POST.get('header')).first()
+
+        if form.is_valid() and instance is not None:
+            append = form.cleaned_data['content']
+
+            instance.content += ('\n' + append)
+            instance.save(update_fields=['content'])
 
     context = {
         'lessons':placeholder,
