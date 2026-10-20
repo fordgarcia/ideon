@@ -25,6 +25,7 @@ def topic_api(request, topic_id:int) -> JsonResponse:
     return JsonResponse(api)
 #next step is js fetch and DOM manipulation
 
+
 def lesson_api(request, lesson_id):
     lesson = Lesson.objects.get(id=lesson_id)
 
@@ -34,11 +35,20 @@ def lesson_api(request, lesson_id):
         'description':lesson.description,
     }
 
+    def get_notes(topic):
+        return {
+            note.id: {
+                'header':note.header,
+                'content':note.content,
+            } for note in topic.notes.all()
+        }
+
 
     topics = {
         topic.id:{
             'name':topic.name,
             'description':topic.description,
+            'notes':get_notes(topic=topic),
         }
         for topic in lesson.topics.all()
     }
@@ -62,7 +72,7 @@ def test(request):
         # if form.is_valid():
         #     form.save()
         #     return redirect('test')
-
+        
         instance = Note.objects.filter(header=request.POST.get('header')).first()
 
         if form.is_valid() and instance is not None:

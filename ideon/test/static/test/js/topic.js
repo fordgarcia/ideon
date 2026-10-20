@@ -127,6 +127,28 @@ async function getLesson(lesson_id) {
                 objects[key][1].textContent = value.description;
                 objects[key][1].className = 'texts';
                 article.append(objects[key][0], objects[key][1]);
+
+                const article_for_topic = document.createElement('article');
+                article_for_topic.id = 'topic_article';
+                
+                const note_objects = {};
+
+                // console.log(`log: notes = ${value.notes['1'].content}`);
+                // console.log(`log: type = ${typeof value.notes}`);
+
+                if (value.notes !== null && typeof value.notes === "object") {
+                    for (const [note_key, note_value] of Object.entries(value.notes)) {
+                        note_objects[note_key] = [
+                            document.createElement('h4'),
+                            document.createElement('p')
+                        ];
+                        note_objects[note_key][0].textContent = note_value.header;
+                        note_objects[note_key][1].textContent = note_value.content;
+                        
+                        article_for_topic.append(note_objects[note_key][0], note_objects[note_key][1]);
+                    }
+                }
+                article.append(article_for_topic);
             }
         }
 
@@ -134,6 +156,6 @@ async function getLesson(lesson_id) {
 
 
     } catch (error) {
-
+        console.log(`error: ${error}`);
     }
 }
