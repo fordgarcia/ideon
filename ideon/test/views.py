@@ -75,11 +75,15 @@ def test(request):
         
         instance = Note.objects.filter(header=request.POST.get('header')).first()
 
-        if form.is_valid() and instance is not None:
-            append = form.cleaned_data['content']
-
-            instance.content += ('\n' + append)
-            instance.save(update_fields=['content'])
+        if form.is_valid():
+            if instance is not None:
+                append = form.cleaned_data['content']
+                
+                instance.content += ('\n' + append)
+                instance.save(update_fields=['content'])
+            else:
+                form.save()
+        
 
     context = {
         'lessons':placeholder,
