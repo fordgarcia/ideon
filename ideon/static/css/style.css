@@ -112,64 +112,6 @@ main {
 }
 
 
-/* split this part and the js part to another file */
-
-form label {
-    display: none;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form #id_topic,
-form #id_header,
-form #id_content {
-    border: 2px solid var(--text);
-    padding: 10px;
-    border-radius: 0;
-    color: var(--text);
-    font-weight: bold;
-    font-size: 1em;
-    width: 600px;
-    outline:none;
-    box-shadow: 10px 10px 0 var(--text);
-}
-
-form option {
-    font-weight: bold;
-}
-
-form #id_topic {
-    background-color: var(--buttons);
-}
-
-form #id_header {
-    background-color: var(--background);
-}
-
-form #id_content {
-    background-color: var(--background);
-    resize: none;
-}
-
-form #id_submit,
-form #id_reset {
-    width: 100px;
-    margin-top: 20px;
-    padding: 10px;
-    border: 2px solid var(--text);
-    box-shadow: 2px 2px 0 var(--text);
-    background-color: var(--background);
-    color: var(--text);
-    font-weight: bold;
-}
-
-
-
-
 
 
 

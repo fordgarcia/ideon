@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 
 class Lesson(models.Model):
-    name = models.CharField(max_length=200, null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    lesson_name = models.CharField(max_length=200, null=False, blank=False)
+    lesson_description = models.TextField(null=True, blank=True)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.lesson_name
 
 class Topic(models.Model):
     lesson = models.ForeignKey(
@@ -18,13 +18,13 @@ class Topic(models.Model):
         related_name='topics'
     )
 
-    name = models.CharField(max_length=200, null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    topic_name = models.CharField(max_length=200, null=False, blank=False)
+    topic_description = models.TextField(null=True, blank=True)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.topic_name
 
 
 class Note(models.Model):

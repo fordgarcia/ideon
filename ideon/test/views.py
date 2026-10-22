@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from session.models import Lesson
 lazy from django.http import JsonResponse
 lazy from session.models import Topic, Lesson, Note
-from .forms import NoteForm
+from .forms import NoteForm, LessonForm, TopicForm
 
 # Create your views here.
 
@@ -11,8 +11,8 @@ def topic_api(request, topic_id:int) -> JsonResponse:
 
     api = {
         'id':topic.id,
-        'name': topic.name,
-        'description': topic.description,
+        'name': topic.topic_name,
+        'description': topic.topic_description,
         'date_created': topic.date_creation,
         'date_updated': topic.date_updated,
     }
@@ -31,8 +31,8 @@ def lesson_api(request, lesson_id):
 
     api = {
         'id':lesson.id,
-        'name':lesson.name,
-        'description':lesson.description,
+        'name':lesson.lesson_name,
+        'description':lesson.lesson_description,
     }
 
     def get_notes(topic):
@@ -46,8 +46,8 @@ def lesson_api(request, lesson_id):
 
     topics = {
         topic.id:{
-            'name':topic.name,
-            'description':topic.description,
+            'name':topic.topic_name,
+            'description':topic.topic_description,
             'notes':get_notes(topic=topic),
         }
         for topic in lesson.topics.all()
@@ -59,10 +59,12 @@ def lesson_api(request, lesson_id):
 
 def test(request):
     placeholder = Lesson.objects.all()
-
+    form_type = None
     if request.method == 'POST':
-        form = NoteForm(request.POST)
-
+        # type = len(request.POST.keys())
+        type = 3
+        print(f'DEBUG: {len(request.POST.keys())}')
+        
         # update
         # instance = Note.objects.filter(header=request.POST.get('header')).first()
         # # instance = Note.objects.get(header=request.POST.get('header'))
@@ -72,21 +74,28 @@ def test(request):
         # if form.is_valid():
         #     form.save()
         #     return redirect('test')
-        
-        instance = Note.objects.filter(header=request.POST.get('header')).first()
 
-        if form.is_valid():
-            if instance is not None:
-                append = form.cleaned_data['content']
-                
-                instance.content += ('\n' + append)
-                instance.save(update_fields=['content'])
-            else:
-                form.save()
+        if type == 1:
+            form_type = LessonForm()
+        elif type == 2:
+            form_type = TopicForm()
+        else:
+            form_type = NoteForm()
+            form = NoteForm(request.POST)
+            instance = Note.objects.filter(header=request.POST.get('header')).first()
+            
+            if form.is_valid():
+                if instance is not None:
+                    append = form.cleaned_data['content']
+                            
+                    instance.content += ('\n' + append)
+                    instance.save(update_fields=['content'])
+                else:
+                    form.save()
         
 
     context = {
         'lessons':placeholder,
-        'form':NoteForm
+        'form': form_type
     }
     return render(request, 'test/test.html', context)

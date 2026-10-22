@@ -34,17 +34,6 @@
 // }
 
 // loadTopics();
-
-
-const headerInput = document.querySelector('#id_header');
-const contentInput = document.querySelector('#id_content');
-const selectInput = document.querySelector('#id_topic');
-const selectedInput = selectInput.querySelector('option:checked');
-
-selectedInput.textContent = 'TOPIC';
-headerInput.placeholder = 'What is this?';
-contentInput.placeholder = 'EUREKA!';
-
 const topicsContainer = document.querySelector("#container");
 
 let hasTopic = false;
